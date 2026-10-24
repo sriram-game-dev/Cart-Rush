@@ -20,9 +20,9 @@ public class Trigger_Groceries : MonoBehaviour
         switch (other.tag)
         {
             case "Ground":
-                GameManager.instance.isMissed = true;
                 GameManager.instance.StopFallingObjects();
                 gameObject.SetActive(false);
+                GameManager.instance.isMissed = true;
                 break;
         }
     }
