@@ -10,9 +10,9 @@ public class Trigger_Groceries : MonoBehaviour
         {
             case "Player":
                 GameManager.instance.isObjectPicked = true;
+                GameManager.instance.AddScore(1);
                 gameObject.SetActive(false);
                 break;
-
         }
     }
     private void OnTriggerExit2D(Collider2D other)
@@ -20,9 +20,8 @@ public class Trigger_Groceries : MonoBehaviour
         switch (other.tag)
         {
             case "Ground":
-                GameManager.instance.StopFallingObjects();
                 gameObject.SetActive(false);
-                GameManager.instance.isMissed = true;
+                GameManager.instance.GameOver();
                 break;
         }
     }

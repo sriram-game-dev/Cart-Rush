@@ -19,18 +19,30 @@ public class GameManager : MonoBehaviour
     private readonly Dictionary<GameObject, Queue<GameObject>> pools =
         new Dictionary<GameObject, Queue<GameObject>>();
 
+    [Header("GamePlay")]
     [Header("Boolean")]
     //PlayerBool
+    public bool IsGameplayRunning { get; private set; }
     public bool playerBool;
     //GameplayBool
-    public bool groundBool;
     public bool isObjectPicked;
+    public bool isWaitingForPlayerClick;
+    public bool isWaitingForPlayerMovement;
     public bool isMissed;
+    [Header("UI")]
+    [Header("Strings")]
+    public string _LoginStatus { get; private set; }
+    [Header("Boolean")]
+    public bool firstTimeLoginBool { get; private set; }
 
-
+    [Header("Score")]
+    public int score;
+    public int bonusScore;
 
     //Singleton
     public static GameManager instance;
+
+
 
     //Awake
     void Awake()
@@ -43,9 +55,21 @@ public class GameManager : MonoBehaviour
         }
 
         instance = this;
+    }
 
-        //Object Pooling
-        // Object Pooling
+    void Start()
+    {
+
+        isObjectPicked = false;
+        isMissed = false;
+
+        _LoginStatus = PlayerPrefsManager.instance.LoginStatus;
+
+        InitializeObjectPools();
+    }
+    void InitializeObjectPools()
+    {
+
         foreach (GameObject prefab in ResourceManager.instance.objects)
         {
             if (prefab == null || pools.ContainsKey(prefab))
@@ -63,21 +87,32 @@ public class GameManager : MonoBehaviour
             pools.Add(prefab, pool);
         }
     }
-
-    void Start()
+public void StartGameplay()
+{
+    IsGameplayRunning = true;
+    playerBool = false;
+    isMissed = false;
+    isObjectPicked = false;
+    spawnTime = 0f;
+    score = 0;
+    bonusScore = 0;
+    if (UIManager.instance != null)
     {
-        isObjectPicked = false;
-        isMissed = false;
+        UIManager.instance.UpdateScoreDisplay(score, bonusScore);
     }
+}
 
+public void StopGameplay()
+{
+    IsGameplayRunning = false;
+    playerBool = false;
+}
     //Update Function
     void Update()
     {
         //Game Over Check
-        if (isMissed)
-        {
-            return;
-        }
+if (!IsGameplayRunning || isMissed)
+    return;
 
         //Spawning interval
         spawnTime += Time.deltaTime;
@@ -130,6 +165,7 @@ public class GameManager : MonoBehaviour
 
         if (rb != null)
         {
+            rb.simulated = true;
             rb.linearVelocity = Vector2.zero; // Unity 6; Unity 2022.3 use rb.velocity
             rb.angularVelocity = 0f;
         }
@@ -158,14 +194,7 @@ public class GameManager : MonoBehaviour
 
         GetObject(prefab, spawnPosition);
     }
-    //----------------------------------------------//
-    //------------ObjectTriggerFunction-------------//
-    //----------------------------------------------//
 
-    public void ObjectTriggersFunction()
-    {
-
-    }
     //-----------------------------------------------//
     //--------------GameEnd--------------------------//
     //----------------------------------------------//
@@ -188,6 +217,49 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void AddScore(int amount = 1)
+    {
+        score += amount;
+        if (UIManager.instance != null)
+        {
+            UIManager.instance.UpdateScoreDisplay(score, bonusScore);
+        }
+    }
+
+    public void AddBonusScore(int amount = 1)
+    {
+        bonusScore += amount;
+        if (UIManager.instance != null)
+        {
+            UIManager.instance.UpdateScoreDisplay(score, bonusScore);
+        }
+    }
+
+    public void GameOver()
+    {
+        if (isMissed) return;
+        isMissed = true;
+        StopFallingObjects();
+        StopGameplay();
+        if (UIManager.instance != null)
+        {
+            UIManager.instance.ShowGameOver(score, bonusScore);
+        }
+    }
+
+    //-----------------------------------------------//
+    //--------------GamePlay Login Creditial---------//
+    //----------------------------------------------//
+
+    public bool IsLoginStatus(string message)
+    {
+        return _LoginStatus == message;
+    }
+
+    public void SetLoginStatus(string message)
+    {
+        _LoginStatus = message;
+    }
 
 }
 

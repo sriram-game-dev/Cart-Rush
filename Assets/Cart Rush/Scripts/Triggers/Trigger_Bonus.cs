@@ -10,10 +10,10 @@ public class Trigger_Bonus : MonoBehaviour
         {
             case "Player":
                 GameManager.instance.isObjectPicked = true;
+                GameManager.instance.AddBonusScore(1);
                 gameObject.SetActive(false);
                 Debug.Log("Bonus Collected!");
                 break;
-
         }
     }
 
@@ -21,7 +21,7 @@ public class Trigger_Bonus : MonoBehaviour
     {
         if (other.CompareTag("Ground"))
         {
-             gameObject.SetActive(false);
+            gameObject.SetActive(false);
             Debug.Log("Exits Ground!");
         }
     }

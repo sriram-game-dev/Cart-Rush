@@ -61,7 +61,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -3.211, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3330529962454557692}
@@ -101,7 +101,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: -0.008015633}
+  m_Offset: {x: 0.0066256523, y: -0.17586377}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -111,7 +111,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.4321442, y: 0.7941866}
+  m_Size: {x: 1.4188929, y: 0.8560253}
   m_EdgeRadius: 0
 --- !u!114 &7932479788627754499
 MonoBehaviour:
@@ -125,8 +125,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2e5b9d18f0d8c8439d096fe5c864b4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  minX: -8
-  maxX: 8
+  minX: -7
+  maxX: 7
 --- !u!1 &6631509017903001635
 GameObject:
   m_ObjectHideFlags: 0
