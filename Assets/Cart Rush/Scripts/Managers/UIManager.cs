@@ -119,7 +119,7 @@ public class UIManager : MonoBehaviour
         if (GameManager.instance.IsLoginStatus(
             "Entry_Tutorial_PlayPressed"))
         {
-          StartCoroutine(StartGameplayIntro());
+            StartCoroutine(StartGameplayIntro());
         }
         else if (GameManager.instance.IsLoginStatus(
             "Entry_Intro_Pressed"))
@@ -139,7 +139,7 @@ public class UIManager : MonoBehaviour
                 "Entry_InGamePlay"
             );
 
-           StartCoroutine(StartGameplayIntro());
+            StartCoroutine(StartGameplayIntro());
         }
         else if (GameManager.instance.IsLoginStatus(
             "Entry_Intro_Pressed"))
@@ -183,37 +183,34 @@ public class UIManager : MonoBehaviour
                 break;
         }
     }
-IEnumerator StartGameplayIntro()
-{
-    ResourceManager.instance.TutorialPanel.SetActive(false);
+    IEnumerator StartGameplayIntro()
+    {
+        GameManager.instance.StartTutorial();
 
-    ResourceManager.instance.Gameplay.SetActive(true);
-    ResourceManager.instance.GamePlayUIPanel.SetActive(true);
-    yield return new WaitForSeconds(1f);
+        ResourceManager.instance.TutorialPanel.SetActive(false);
+        ResourceManager.instance.Gameplay.SetActive(true);
+        ResourceManager.instance.GamePlayUIPanel.SetActive(true);
 
-    ResourceManager.instance.FirstIntro.SetActive(true);
-    ResourceManager.instance.FirstStep.SetActive(true);
-    ResourceManager.instance.SecondStep.SetActive(false);
+        ResourceManager.instance.FirstIntro.SetActive(true);
+        ResourceManager.instance.FirstStep.SetActive(true);
+        ResourceManager.instance.SecondStep.SetActive(false);
 
-    // Stop spawning until the tutorial is completed.
-    GameManager.instance.StopGameplay();
-    
-    // Step 1: Wait for the player to click the character.
-    GameManager.instance.isWaitingForPlayerClick = true;
-    GameManager.instance.isWaitingForPlayerMovement = false;
-}
+        yield return new WaitForSeconds(0f);
+
+        GameManager.instance.isWaitingForPlayerClick = true;
+    }
 
     public void NextStep()
     {
-        ResourceManager.instance.FirstStep.SetActive(false);
         ResourceManager.instance.SecondStep.SetActive(true);
+        ResourceManager.instance.FirstStep.SetActive(false);
 
     }
     public void FinishStep()
     {
         if (ResourceManager.instance.SecondStep != null)
             ResourceManager.instance.SecondStep.SetActive(false);
-        
+
         if (ResourceManager.instance.FirstIntro != null)
             ResourceManager.instance.FirstIntro.SetActive(false);
 
@@ -290,6 +287,7 @@ IEnumerator StartGameplayIntro()
         // Update Daily Objectives progress
         if (PlayerPrefsManager.instance != null)
         {
+            PlayerPrefsManager.instance.CheckAndInitDailyObjectives();
             PlayerPrefsManager.instance.AddDailyGroceries(groceries);
             PlayerPrefsManager.instance.AddDailySavings(savings);
 

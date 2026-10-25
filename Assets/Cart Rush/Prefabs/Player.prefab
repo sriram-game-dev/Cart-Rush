@@ -43,7 +43,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8457635162759522865}
   - component: {fileID: 9108655103716473670}
-  - component: {fileID: 7932479788627754499}
+  - component: {fileID: 8417461281808154099}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -113,7 +113,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.4188929, y: 0.8560253}
   m_EdgeRadius: 0
---- !u!114 &7932479788627754499
+--- !u!114 &8417461281808154099
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -127,6 +127,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   minX: -7
   maxX: 7
+  explanationDelay: 0.1
+  gameplayStartDelay: 1.5
+  requiredDragDistance: 20
+  debugTiming: 1
 --- !u!1 &6631509017903001635
 GameObject:
   m_ObjectHideFlags: 0

@@ -19,10 +19,18 @@ public class GameManager : MonoBehaviour
     private readonly Dictionary<GameObject, Queue<GameObject>> pools =
         new Dictionary<GameObject, Queue<GameObject>>();
 
+    //Difficulty (fall speed ramps up from slow to fast)
+    [Header("Difficulty (Fall Speed)")]
+    [SerializeField] private float startGravityScale = 0.3f;  // slow at the start
+    [SerializeField] private float maxGravityScale = 2.5f;    // fastest it gets
+    [SerializeField] private float timeToReachMax = 90f;      // seconds from slow to fast
+    private float gameplayTime;
+
     [Header("GamePlay")]
     [Header("Boolean")]
     //PlayerBool
     public bool IsGameplayRunning { get; private set; }
+    public bool IsTutorialRunning { get; private set; }
     public bool playerBool;
     //GameplayBool
     public bool isObjectPicked;
@@ -42,8 +50,6 @@ public class GameManager : MonoBehaviour
     //Singleton
     public static GameManager instance;
 
-
-
     //Awake
     void Awake()
     {
@@ -59,7 +65,6 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-
         isObjectPicked = false;
         isMissed = false;
 
@@ -67,9 +72,9 @@ public class GameManager : MonoBehaviour
 
         InitializeObjectPools();
     }
+
     void InitializeObjectPools()
     {
-
         foreach (GameObject prefab in ResourceManager.instance.objects)
         {
             if (prefab == null || pools.ContainsKey(prefab))
@@ -87,32 +92,58 @@ public class GameManager : MonoBehaviour
             pools.Add(prefab, pool);
         }
     }
-public void StartGameplay()
-{
-    IsGameplayRunning = true;
-    playerBool = false;
-    isMissed = false;
-    isObjectPicked = false;
-    spawnTime = 0f;
-    score = 0;
-    bonusScore = 0;
-    if (UIManager.instance != null)
-    {
-        UIManager.instance.UpdateScoreDisplay(score, bonusScore);
-    }
-}
 
-public void StopGameplay()
-{
-    IsGameplayRunning = false;
-    playerBool = false;
-}
+    public void StartTutorial()
+    {
+        StopGameplay();
+
+        IsTutorialRunning = true;
+        playerBool = false;
+        isWaitingForPlayerClick = false;
+        isWaitingForPlayerMovement = false;
+    }
+
+    public void StartGameplay()
+    {
+        IsTutorialRunning = false;
+        IsGameplayRunning = true;
+
+        playerBool = false;
+        isMissed = false;
+        isObjectPicked = false;
+
+        isWaitingForPlayerClick = false;
+        isWaitingForPlayerMovement = false;
+
+        spawnTime = 0f;
+        gameplayTime = 0f;   // restart the speed ramp every round
+        score = 0;
+        bonusScore = 0;
+
+        if (UIManager.instance != null)
+        {
+            UIManager.instance.UpdateScoreDisplay(score, bonusScore);
+        }
+    }
+
+    public void StopGameplay()
+    {
+        IsGameplayRunning = false;
+        playerBool = false;
+
+        isWaitingForPlayerClick = false;
+        isWaitingForPlayerMovement = false;
+    }
+
     //Update Function
     void Update()
     {
         //Game Over Check
-if (!IsGameplayRunning || isMissed)
-    return;
+        if (!IsGameplayRunning || isMissed)
+            return;
+
+        // Track how long this round has been running.
+        gameplayTime += Time.deltaTime;
 
         //Spawning interval
         spawnTime += Time.deltaTime;
@@ -125,9 +156,19 @@ if (!IsGameplayRunning || isMissed)
     }
 
     //----------------------------------------------//
-    //------------ObjectPoolingFunction-------------//
+    //------------Difficulty------------------------//
     //----------------------------------------------//
 
+    // Slow at the start, gradually faster until maxGravityScale.
+    private float GetCurrentGravityScale()
+    {
+        float t = Mathf.Clamp01(gameplayTime / timeToReachMax);
+        return Mathf.Lerp(startGravityScale, maxGravityScale, t);
+    }
+
+    //----------------------------------------------//
+    //------------ObjectPoolingFunction-------------//
+    //----------------------------------------------//
 
     public GameObject GetObject(GameObject prefab, Vector3 position)
     {
@@ -153,7 +194,10 @@ if (!IsGameplayRunning || isMissed)
             }
         }
 
-        // Do not instantiate extra objects when the pool is full.
+        // Return the selected object to the pool queue.
+        if (obj != null)
+            pool.Enqueue(obj);
+
         if (obj == null)
             return null;
 
@@ -166,6 +210,7 @@ if (!IsGameplayRunning || isMissed)
         if (rb != null)
         {
             rb.simulated = true;
+            rb.gravityScale = GetCurrentGravityScale();   // fall speed for this spawn
             rb.linearVelocity = Vector2.zero; // Unity 6; Unity 2022.3 use rb.velocity
             rb.angularVelocity = 0f;
         }
@@ -174,7 +219,6 @@ if (!IsGameplayRunning || isMissed)
 
         return obj;
     }
-
 
     //----------------------------------------------//
     //------------ObjectSpwaningFunction-------------//
@@ -198,7 +242,6 @@ if (!IsGameplayRunning || isMissed)
     //-----------------------------------------------//
     //--------------GameEnd--------------------------//
     //----------------------------------------------//
-
 
     public void StopFallingObjects()
     {
@@ -260,6 +303,4 @@ if (!IsGameplayRunning || isMissed)
     {
         _LoginStatus = message;
     }
-
 }
-
