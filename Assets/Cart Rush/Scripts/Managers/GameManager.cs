@@ -287,6 +287,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    //GameOver Status
     public void GameOver()
     {
         
