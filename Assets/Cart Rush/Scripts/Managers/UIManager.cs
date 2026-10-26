@@ -268,6 +268,8 @@ public class UIManager : MonoBehaviour
             ResourceManager.instance.SavingsScoreCard.text = savings.ToString();
     }
 
+    //GameOver UI
+
     public void ShowGameOver(int groceries, int savings)
     {
         if (ResourceManager.instance.GameOverUIPanel != null)
