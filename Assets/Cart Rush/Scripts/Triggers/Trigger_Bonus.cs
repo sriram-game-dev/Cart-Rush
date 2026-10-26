@@ -1,28 +1,34 @@
-
 using UnityEngine;
 
 public class Trigger_Bonus : MonoBehaviour
 {
-    //Trigger Functions
-    private void OnTriggerEnter2D(Collider2D other)
+    private bool isHandled;
+
+    private void OnEnable()
     {
-        switch (other.tag)
-        {
-            case "Player":
-                GameManager.instance.isObjectPicked = true;
-                GameManager.instance.AddBonusScore(1);
-                gameObject.SetActive(false);
-                Debug.Log("Bonus Collected!");
-                break;
-        }
+        isHandled = false;
     }
 
-    private void OnTriggerExit2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Ground"))
+        if (isHandled)
+            return;
+
+        if (other.CompareTag("Player"))
         {
+            isHandled = true;
+            if (GameManager.instance != null && GameManager.instance.IsGameplayRunning)
+            {
+                GameManager.instance.isObjectPicked = true;
+                GameManager.instance.AddBonusScore(1);
+                Debug.Log($"[CartRush] Bonus CAUGHT! Current Bonus: {GameManager.instance.bonusScore}");
+            }
             gameObject.SetActive(false);
-            Debug.Log("Exits Ground!");
+        }
+        else if (other.CompareTag("Ground"))
+        {
+            isHandled = true;
+            gameObject.SetActive(false);
         }
     }
 }

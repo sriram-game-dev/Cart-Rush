@@ -35,7 +35,6 @@ public class UIManager : MonoBehaviour
     //before Opening
     void AtStart()
     {
-
         if (ResourceManager.instance.Gameplay != null)
             ResourceManager.instance.Gameplay.SetActive(false);
         if (ResourceManager.instance.OpeningPanel != null)

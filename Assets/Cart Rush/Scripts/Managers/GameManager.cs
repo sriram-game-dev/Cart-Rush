@@ -105,6 +105,7 @@ public class GameManager : MonoBehaviour
 
     public void StartGameplay()
     {
+        StopFallingObjects();
         IsTutorialRunning = false;
         IsGameplayRunning = true;
 
@@ -148,11 +149,14 @@ public class GameManager : MonoBehaviour
         //Spawning interval
         spawnTime += Time.deltaTime;
 
-        if (spawnTime >= interval)
+        float effectiveInterval = Mathf.Max(interval, 1.8f);
+
+        if (spawnTime >= effectiveInterval)
         {
             ObjectsSpawing();
             spawnTime = 0f;
         }
+
     }
 
     //----------------------------------------------//
@@ -209,12 +213,14 @@ public class GameManager : MonoBehaviour
 
         if (rb != null)
         {
+            rb.position = position;
             rb.simulated = true;
             rb.gravityScale = GetCurrentGravityScale();   // fall speed for this spawn
             rb.linearVelocity = Vector2.zero; // Unity 6; Unity 2022.3 use rb.velocity
             rb.angularVelocity = 0f;
         }
 
+        Physics2D.SyncTransforms();
         obj.SetActive(true);
 
         return obj;
@@ -254,8 +260,11 @@ public class GameManager : MonoBehaviour
                 if (rb != null)
                 {
                     rb.linearVelocity = Vector2.zero;
+                    rb.angularVelocity = 0f;
                     rb.simulated = false;
                 }
+
+                child.gameObject.SetActive(false);
             }
         }
     }
@@ -280,8 +289,10 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        
         if (isMissed) return;
         isMissed = true;
+          Debug.Log($"[CartRush] Game Over! Score: {score}, Bonus: {bonusScore}\n{System.Environment.StackTrace}");
         StopFallingObjects();
         StopGameplay();
         if (UIManager.instance != null)

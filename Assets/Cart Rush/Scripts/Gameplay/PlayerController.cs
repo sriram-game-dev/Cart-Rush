@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
     private void Log(string message)
     {
         if (debugTiming)
-            Debug.Log($"[Tutorial {Time.time:F2}s] {message}");
+            Debug.Log($"[Player {Time.time:F2}s] {message}");
     }
 
     private void Start()
@@ -83,8 +83,38 @@ public class PlayerController : MonoBehaviour
             gm.playerBool = false;
         }
 
-        // Ignore input when tutorial and gameplay are inactive.
-        if (!gm.IsTutorialRunning && !gm.IsGameplayRunning)
+        // Gameplay movement (supports mouse drag anywhere + keyboard A/D & arrow keys)
+        if (gm.IsGameplayRunning)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                isMouseHoldingCart = true;
+                Vector3 worldPos = GetMouseWorldPosition();
+                grabOffsetX = player.transform.position.x - worldPos.x;
+            }
+
+            if (isMouseHoldingCart && Input.GetMouseButton(0))
+            {
+                Vector3 worldPosition = GetMouseWorldPosition();
+                Vector3 playerPosition = player.transform.position;
+                playerPosition.x = Mathf.Clamp(worldPosition.x + grabOffsetX, minX, maxX);
+                player.transform.position = playerPosition;
+            }
+
+            // Keyboard input (A/D, Left/Right arrow keys)
+            float h = Input.GetAxisRaw("Horizontal");
+            if (Mathf.Abs(h) > 0.01f)
+            {
+                Vector3 playerPos = player.transform.position;
+                playerPos.x = Mathf.Clamp(playerPos.x + h * 14f * Time.deltaTime, minX, maxX);
+                player.transform.position = playerPos;
+            }
+
+            return;
+        }
+
+        // Ignore input when tutorial is inactive.
+        if (!gm.IsTutorialRunning)
         {
             gm.playerBool = false;
             return;
