@@ -1,7 +1,6 @@
 # 🛒 Cart Rush
 
 > **A fast-paced 2D arcade physics catcher prototype built with Unity 6 (WebGL).**  
-> Built for the **Core Loop + Day-1 (D1) Prototype Challenge**.
 
 <div align="center">
   <img src="docs/images/01_title_screen.png" alt="Cart Rush Title Screen" width="720" />
@@ -10,16 +9,19 @@
 ---
 
 ## 🎮 Playable Demo & Repository Links
-* **🕹️ WebGL Playable Demo (One Click, Browser):** `[INSERT_YOUR_WEB_LINK_HERE - e.g. itch.io / GitHub Pages / Netlify]`
-* **💻 GitHub Repository:** `[INSERT_YOUR_GITHUB_REPO_URL_HERE]`
-* **📹 Gameplay Video Reference:** Included in project submissions (`Video_Project_2_(1).mp4`).
+* **🕹️ WebGL Playable Demo (One Click, Browser):** [Cart Rush itch.io](https://sriram-game-dev.itch.io/cart-rush)
+* **💻 GitHub Repository:** [Cart Rush Repo](https://github.com/sriram-game-dev/Cart-Rush)
+* **📹 Gameplay Video Reference:** Included in project submissions [Gameplay Demo](https://youtu.be/2TVzOWqtTL4?si=BdvvS7phzubA9q84).
 
 ---
 
 ## 📌 Executive Pitch
-* **What is it?** *Cart Rush* is an intuitive, fast-reflex 2D arcade physics game where players drag a supermarket shopping cart horizontally to catch falling groceries and bonus coupons while avoiding letting any grocery item touch the floor.
-* **Who is it for?** Casual and hyper-casual mobile/browser gamers (ages 16–35) looking for quick, punchy 60-to-90-second play sessions during commutes, study breaks, or daily downtime.
-* **Why play it?** The immediate 1:1 tactile drag responsiveness, high-stakes sudden-death catching tension, risk-vs-reward bonus coupons, and a clear daily objective progression loop.
+
+- **What is it?** *Cart Rush* is a fast-paced 2D arcade physics game where players drag a supermarket shopping cart horizontally to catch falling groceries and bonus coupons while avoiding letting grocery items hit the floor.
+
+- **Who is it for?** Casual and hyper-casual gamers looking for quick, engaging 60–90-second play sessions during breaks, commutes, or downtime, with gameplay designed for browser audiences.
+
+- **Why play it?** Responsive drag controls, the tension of sudden-death grocery catching, risk-versus-reward coupon collection, and cumulative daily objectives create an easy-to-learn but challenging gameplay experience.
 
 ---
 
@@ -90,9 +92,23 @@ flowchart TD
 3. **Midnight UTC Auto-Reset:** Progress persists locally across sessions throughout the calendar day using `DateTime.UtcNow` date-stamped `PlayerPrefs`. When the player returns tomorrow, fresh objectives generate automatically, providing a concrete reason to return daily.
 
 ### Long-Term Retention (Months)
-* **Aisle Theming:** Unlocking new supermarket aisles (Produce $\rightarrow$ Bakery $\rightarrow$ Frozen Foods $\rightarrow$ Delicatessen) with distinctive physics (e.g., fragile eggs with smaller hitboxes, bouncing frozen turkeys, slippery soap hazards).
-* **Cosmetic Trolleys:** Earning coupon currency to unlock visual shopping carts (Golden Trolley, Turbo Kart, Wire Basket) and checkout sound effects.
-* **Weekly Supermarket Sweep:** Asynchronous weekly brackets (50 players) where daily objective completion awards tickets into weekend high-score tournaments.
+The following features are planned to expand Cart Rush beyond its current prototype and encourage long-term player engagement.
+
+- **New Locations & Aisle Theming:** Introduce unlockable supermarket aisles, including Produce, Bakery, Frozen Foods, and Delicatessen. Each location will feature unique grocery items, hazards, and gameplay mechanics.
+
+- **Cart Collection & Customization:** Allow players to earn coupon currency and unlock cosmetic shopping carts, such as the Golden Trolley, Turbo Kart, and Wire Basket. Alternative checkout sound effects may also be introduced.
+
+- **Card Passes & Special Upgrades:** Introduce Card Passes that provide access to special upgrades and optional ways to continue a run after failure.
+
+- **Timed Challenges:** Add limited-time challenges that encourage players to improve their scores and replay the game.
+
+- **Weekly Supermarket Sweep:** Explore asynchronous weekly tournaments with brackets of up to 50 players. Daily objective completion will award tickets for weekend high-score competitions.
+
+- **Weekly Objective Streaks:** Introduce weekly goals and streak-based rewards to encourage consistent play.
+
+- **Mobile Implementation :** Plan to expand Cart Rush to mobile devices in the future, with touchscreen drag controls and an interface optimized for smaller screens.
+
+These features are part of the future development roadmap and are not available in the current prototype.
 
 ---
 
@@ -101,17 +117,15 @@ flowchart TD
 | Control | Input Method | Platform |
 | :--- | :--- | :--- |
 | **Steer Cart** | Click/Touch & Drag anywhere horizontally | Desktop Mouse / Mobile Touchscreen |
-| **Keyboard Left** | `A` or `Left Arrow` | WebGL / Desktop |
-| **Keyboard Right** | `D` or `Right Arrow` | WebGL / Desktop |
 | **Pause / Resume** | Click `⏸` icon in top-right | All Platforms |
 
 ---
 
-## 💡 The 7 Design Pillars (Challenge Questionnaire)
+## 💡 The 7 Design Pillars
 
 ### 1. The Pitch
 * **Premise:** Supermarket checkout rush under physics chaos.
-* **Target Audience:** Casual mobile and browser gamers seeking fast-acting reflex loops with zero learning curve.
+* **Target Audience:** Browser gamers seeking fast-acting reflex loops with zero learning curve.
 * **Appeal:** Simple to understand in 3 seconds, challenging to master after 45 seconds, rewarding to complete daily.
 
 ### 2. Core Loop and First Session
@@ -119,14 +133,27 @@ flowchart TD
 * **Why Return Tomorrow:** The Game Over screen clearly surfaces progress on the Daily Objective board. Seeing `14 / 20 groceries collected` drives the desire to complete today's quota; seeing tomorrow's reset countdown creates the Day-1 return impulse.
 
 ### 3. Progression and Metagame
-* **Day-1 Hook:** Cumulative daily grocery and coupon milestones that do not punish failure and reset daily via local UTC date checks.
-* **Long-Term Metagame:** Unlocking new aisles with unique hazards, seasonal Club Card battle passes, cosmetic cart customizations, and weekend tournament tiers.
+**Day-1 Hook**
+- **Daily Milestones:** Players complete cumulative grocery collection and coupon milestones to earn rewards.
+- **Failure-Friendly Progression:** Daily progress is retained even if a player misses items or fails a run.
+- **Daily Reset:** Daily objectives reset automatically based on the UTC calendar date.
+
+**Long-Term Metagame**
+- **New Locations:** Unlock new places to keep gameplay fresh.
+- **Cart Collection:** Unlock better shopping carts as players progress.
+- **Card Passes:** Use card passes to access special upgrades.
+- **Timed Challenges:** Introduce time-limited challenges to encourage replayability.
+- **Weekly Objective Streaks:** Reward consistent play through weekly goals and streaks.
 
 ### 4. Monetization Strategy
-* **Non-Aggressive, Fair Monetization:**
-  * **Optional Rewarded Video (Limit 1/run):** "Express Checkout" revive offering a single second chance per run without inflating leaderboard scores.
-  * **Club Card Battle Pass:** Cosmetic-only tracks rewarding seasonal cart skins, grocery trails, and custom checkout chimes.
-  * **No Energy Bars:** The core loop is never gated behind paywalls or cooldown timers; player engagement is respected.
+
+Cart Rush follows a player-friendly monetization approach that prioritizes optional rewards and purchases without forcing players to spend money.
+
+- **Level Unlocks:** Spend earned in-game coins to unlock new levels or locations.
+- **Cart Upgrades:** Collect coupons and convert them into coins to unlock better shopping carts.
+- **Continue After Failure:** Resume a failed run by watching an optional rewarded advertisement or using a Card Pass.
+
+The core gameplay remains accessible without requiring payment. Optional advertisements and in-game purchases provide additional progression opportunities while maintaining a fair experience for all players.
 
 ### 5. AI in Development & Game Design
 * **How AI Was Used in Building:**
@@ -136,18 +163,34 @@ flowchart TD
   * *Future Integration:* A lightweight client-side heuristic model that measures player reaction latency and cart velocity to dynamically compose "flow-state" drop patterns, avoiding frustrating impossible splits while pushing players to their personal reflex limit.
 
 ### 6. Shipping & Analytics
-* **Initial Focus:** Input feel and drag latency across touchscreens and mouse viewports. If player loss feels unfair due to controls, retention collapses.
-* **Soft Launch Key Performance Indicators (KPIs):**
-  * **D1 Retention:** Benchmark target $\ge 35\% - 40\%$.
-  * **D7 Retention:** Benchmark target $\ge 12\% - 15\%$.
-  * **Average Runs / Daily Active User:** $\ge 4.5$ runs/day.
-  * **Daily Objective Completion Rate:** $\ge 60\%$.
-* **Kill / Pivot Signals:** If Day-1 retention falls below $22\%$ despite input tuning, or if session drop-off happens immediately after the first death, pivot the failure model from sudden-death to a 3-strikes / health-bar system.
+**Initial Focus**
+- **Input Feel and Responsiveness:** Prioritize smooth, responsive controls and minimize drag latency across touchscreen devices and mouse-based desktop browsers.
+- **Fair Gameplay:** Ensure that player losses feel fair and are caused by gameplay decisions rather than unresponsive controls. Unfair input can negatively affect player retention.
+
+**Soft Launch Key Performance Indicators (KPIs)**
+
+| Metric | Target |
+|---|---|
+| Day-1 Retention (D1) | 35%–40% or higher |
+| Day-7 Retention (D7) | 12%–15% or higher |
+| Average Runs per Daily Active User (DAU) | 4.5 or more runs/day |
+| Daily Objective Completion Rate | 60% or higher |
+
+**Kill / Pivot Signals**
+- **Low Day-1 Retention:** If D1 retention remains below 22% despite input improvements, reassess the core gameplay loop and early-game difficulty.
+- **Post-Failure Drop-Off:** If players frequently leave immediately after their first death, consider replacing the sudden-death system with a **3-strikes or health-bar system** to make failure more forgiving.
+
+These KPIs are initial targets for soft-launch testing, not measured results. Use playtest data to validate and refine them.
 
 ### 7. Reference Games & Deconstruction
-* **Fruit Ninja (Halfbrick):** Borrowed the sudden-death urgency of missed mandatory items; altered by replacing freeform screen slashing with positioning an umbrella/paddle catcher.
-* **Alto's Adventure:** Borrowed the non-punitive, cumulative goal system that rewards aggregate effort across multiple runs.
-* **Overcooked:** Borrowed the relatable, high-stress domestic theme of frantic food handling over abstract geometric shapes.
+
+- **Thomsons & Touch Java Game (Dad, Catch!):** Borrowed by its falling-and-catching gameplay mechanic to build the core gameplay of Cart Rush, creating a simple, engaging experience that encourages players to react quickly and keep playing.
+
+- **Banana Kong:** Inspired the idea of rewarding continued effort across multiple runs through cumulative progress and objectives, encouraging players to return and improve their overall progress.
+
+- **Hill Climb Racing:** Inspired the progression concept of unlocking upgrades and new levels, giving players long-term goals to work toward as they earn in-game rewards.
+
+These games serve as design references for Cart Rush's core gameplay, replayability, and progression ideas.
 
 ---
 
