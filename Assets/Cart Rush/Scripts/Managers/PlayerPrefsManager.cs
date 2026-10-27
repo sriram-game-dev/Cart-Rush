@@ -1,5 +1,5 @@
-
 using System;
+using System.Globalization;
 using UnityEngine;
 
 public class PlayerPrefsManager : MonoBehaviour
@@ -10,6 +10,7 @@ public class PlayerPrefsManager : MonoBehaviour
     private const string LastDateKey = "Daily_LastDate";
     private const string DailyGroceriesKey = "Daily_GroceriesCollected";
     private const string DailySavingsKey = "Daily_SavingsCollected";
+    private const string DefaultLoginStatus = "Entry_LoginFirstTime";
 
     public string LoginStatus { get; private set; }
 
@@ -34,12 +35,17 @@ public class PlayerPrefsManager : MonoBehaviour
         CheckAndInitDailyObjectives();
     }
 
+    private void OnApplicationFocus(bool hasFocus)
+    {
+        // Refresh when returning from the background (handles midnight rollover)
+        if (hasFocus) CheckAndInitDailyObjectives();
+    }
+
+    // ---------------- Login ----------------
+
     public void LoadLoginStatus()
     {
-        LoginStatus = PlayerPrefs.GetString(
-            LoginKey,
-            "Entry_LoginFirstTime"
-        );
+        LoginStatus = PlayerPrefs.GetString(LoginKey, DefaultLoginStatus);
     }
 
     public void SaveLoginStatus(string status)
@@ -55,12 +61,14 @@ public class PlayerPrefsManager : MonoBehaviour
         PlayerPrefs.DeleteKey(LoginKey);
         PlayerPrefs.Save();
 
-        LoginStatus = "Entry_LoginFirstTime";
+        LoginStatus = DefaultLoginStatus;
     }
+
+    // ---------------- Daily objectives ----------------
 
     public void CheckAndInitDailyObjectives()
     {
-        string today = DateTime.UtcNow.ToString("yyyy-MM-dd");
+        string today = DateTime.UtcNow.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
         string lastDate = PlayerPrefs.GetString(LastDateKey, string.Empty);
 
         if (lastDate != today)
@@ -83,6 +91,7 @@ public class PlayerPrefsManager : MonoBehaviour
 
     public void AddDailyGroceries(int amount)
     {
+        CheckAndInitDailyObjectives();
         DailyGroceriesProgress = Mathf.Clamp(DailyGroceriesProgress + amount, 0, DailyGroceriesTarget);
         PlayerPrefs.SetInt(DailyGroceriesKey, DailyGroceriesProgress);
         PlayerPrefs.Save();
@@ -90,6 +99,7 @@ public class PlayerPrefsManager : MonoBehaviour
 
     public void AddDailySavings(int amount)
     {
+        CheckAndInitDailyObjectives();
         DailySavingsProgress = Mathf.Clamp(DailySavingsProgress + amount, 0, DailySavingsTarget);
         PlayerPrefs.SetInt(DailySavingsKey, DailySavingsProgress);
         PlayerPrefs.Save();
@@ -97,6 +107,30 @@ public class PlayerPrefsManager : MonoBehaviour
 
     public bool IsDailyObjectivesCompleted()
     {
-        return DailyGroceriesProgress >= DailyGroceriesTarget && DailySavingsProgress >= DailySavingsTarget;
+        CheckAndInitDailyObjectives();
+        return DailyGroceriesProgress >= DailyGroceriesTarget
+            && DailySavingsProgress >= DailySavingsTarget;
     }
+
+    // ---------------- Resets ----------------
+
+    public void ResetDailyObjectives()
+    {
+        PlayerPrefs.DeleteKey(LastDateKey);
+        PlayerPrefs.DeleteKey(DailyGroceriesKey);
+        PlayerPrefs.DeleteKey(DailySavingsKey);
+        PlayerPrefs.Save();
+
+        DailyGroceriesProgress = 0;
+        DailySavingsProgress = 0;
+    }
+
+    public void ResetAll()
+    {
+        ResetLoginStatus();
+        ResetDailyObjectives();
+    }
+
+    [ContextMenu("Reset Daily Objectives")]
+    private void DebugResetDaily() => ResetDailyObjectives();
 }
