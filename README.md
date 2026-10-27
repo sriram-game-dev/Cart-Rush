@@ -1,7 +1,6 @@
 # 🛒 Cart Rush
 
 > **A fast-paced 2D arcade physics catcher prototype built with Unity 6 (WebGL).**  
-> Built for the **Core Loop + Day-1 (D1) Prototype Challenge**.
 
 <div align="center">
   <img src="docs/images/01_title_screen.png" alt="Cart Rush Title Screen" width="720" />
@@ -10,7 +9,7 @@
 ---
 
 ## 🎮 Playable Demo & Repository Links
-* **🕹️ WebGL Playable Demo (One Click, Browser):** `[INSERT_YOUR_WEB_LINK_HERE - e.g. itch.io / GitHub Pages / Netlify]`
+* **🕹️ WebGL Playable Demo (One Click, Browser):** '[https://sriram-game-dev.itch.io/cart-rush]'
 * **💻 GitHub Repository:** `[INSERT_YOUR_GITHUB_REPO_URL_HERE]`
 * **📹 Gameplay Video Reference:** Included in project submissions (`Video_Project_2_(1).mp4`).
 
