@@ -100,17 +100,15 @@ flowchart TD
 | Control | Input Method | Platform |
 | :--- | :--- | :--- |
 | **Steer Cart** | Click/Touch & Drag anywhere horizontally | Desktop Mouse / Mobile Touchscreen |
-| **Keyboard Left** | `A` or `Left Arrow` | WebGL / Desktop |
-| **Keyboard Right** | `D` or `Right Arrow` | WebGL / Desktop |
 | **Pause / Resume** | Click `⏸` icon in top-right | All Platforms |
 
 ---
 
-## 💡 The 7 Design Pillars (Challenge Questionnaire)
+## 💡 The 7 Design Pillars
 
 ### 1. The Pitch
 * **Premise:** Supermarket checkout rush under physics chaos.
-* **Target Audience:** Casual mobile and browser gamers seeking fast-acting reflex loops with zero learning curve.
+* **Target Audience:** Browser gamers seeking fast-acting reflex loops with zero learning curve.
 * **Appeal:** Simple to understand in 3 seconds, challenging to master after 45 seconds, rewarding to complete daily.
 
 ### 2. Core Loop and First Session
@@ -119,13 +117,13 @@ flowchart TD
 
 ### 3. Progression and Metagame
 * **Day-1 Hook:** Cumulative daily grocery and coupon milestones that do not punish failure and reset daily via local UTC date checks.
-* **Long-Term Metagame:** Unlocking new aisles with unique hazards, seasonal Club Card battle passes, cosmetic cart customizations, and weekend tournament tiers.
+* **Long-Term Metagame:** Unlocking New Places and Carts, Card passes for special upgrades, time limit runtime, weekly objective streak.
 
 ### 4. Monetization Strategy
 * **Non-Aggressive, Fair Monetization:**
-  * **Optional Rewarded Video (Limit 1/run):** "Express Checkout" revive offering a single second chance per run without inflating leaderboard scores.
-  * **Club Card Battle Pass:** Cosmetic-only tracks rewarding seasonal cart skins, grocery trails, and custom checkout chimes.
-  * **No Energy Bars:** The core loop is never gated behind paywalls or cooldown timers; player engagement is respected.
+  * **Level Changes** Use coins to obtain level to change levels.
+  * **Cart upgrade** - Collect coupons to convert into coins to unlock the better cart.
+  * **Re-Changes** - Playable ads or Card passes to purchase in game to resume the game when you failed.
 
 ### 5. AI in Development & Game Design
 * **How AI Was Used in Building:**
