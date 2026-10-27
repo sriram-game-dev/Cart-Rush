@@ -116,14 +116,27 @@ flowchart TD
 * **Why Return Tomorrow:** The Game Over screen clearly surfaces progress on the Daily Objective board. Seeing `14 / 20 groceries collected` drives the desire to complete today's quota; seeing tomorrow's reset countdown creates the Day-1 return impulse.
 
 ### 3. Progression and Metagame
-* **Day-1 Hook:** Cumulative daily grocery and coupon milestones that do not punish failure and reset daily via local UTC date checks.
-* **Long-Term Metagame:** Unlocking New Places and Carts, Card passes for special upgrades, time limit runtime, weekly objective streak.
+**Day-1 Hook**
+- **Daily Milestones:** Players complete cumulative grocery collection and coupon milestones to earn rewards.
+- **Failure-Friendly Progression:** Daily progress is retained even if a player misses items or fails a run.
+- **Daily Reset:** Daily objectives reset automatically based on the UTC calendar date.
+
+**Long-Term Metagame**
+- **New Locations:** Unlock new places to keep gameplay fresh.
+- **Cart Collection:** Unlock better shopping carts as players progress.
+- **Card Passes:** Use card passes to access special upgrades.
+- **Timed Challenges:** Introduce time-limited challenges to encourage replayability.
+- **Weekly Objective Streaks:** Reward consistent play through weekly goals and streaks.
 
 ### 4. Monetization Strategy
-* **Non-Aggressive, Fair Monetization:**
-  * **Level Changes** Use coins to obtain level to change levels.
-  * **Cart upgrade** - Collect coupons to convert into coins to unlock the better cart.
-  * **Re-Changes** - Playable ads or Card passes to purchase in game to resume the game when you failed.
+
+Cart Rush follows a player-friendly monetization approach that prioritizes optional rewards and purchases without forcing players to spend money.
+
+- **Level Unlocks:** Spend earned in-game coins to unlock new levels or locations.
+- **Cart Upgrades:** Collect coupons and convert them into coins to unlock better shopping carts.
+- **Continue After Failure:** Resume a failed run by watching an optional rewarded advertisement or using a Card Pass.
+
+The core gameplay remains accessible without requiring payment. Optional advertisements and in-game purchases provide additional progression opportunities while maintaining a fair experience for all players.
 
 ### 5. AI in Development & Game Design
 * **How AI Was Used in Building:**
@@ -133,16 +146,27 @@ flowchart TD
   * *Future Integration:* A lightweight client-side heuristic model that measures player reaction latency and cart velocity to dynamically compose "flow-state" drop patterns, avoiding frustrating impossible splits while pushing players to their personal reflex limit.
 
 ### 6. Shipping & Analytics
-* **Initial Focus:** Input feel and drag latency across touchscreens and mouse viewports. If player loss feels unfair due to controls, retention collapses.
-* **Soft Launch Key Performance Indicators (KPIs):**
-  * **D1 Retention:** Benchmark target $\ge 35\% - 40\%$.
-  * **D7 Retention:** Benchmark target $\ge 12\% - 15\%$.
-  * **Average Runs / Daily Active User:** $\ge 4.5$ runs/day.
-  * **Daily Objective Completion Rate:** $\ge 60\%$.
-* **Kill / Pivot Signals:** If Day-1 retention falls below $22\%$ despite input tuning, or if session drop-off happens immediately after the first death, pivot the failure model from sudden-death to a 3-strikes / health-bar system.
+**Initial Focus**
+- **Input Feel and Responsiveness:** Prioritize smooth, responsive controls and minimize drag latency across touchscreen devices and mouse-based desktop browsers.
+- **Fair Gameplay:** Ensure that player losses feel fair and are caused by gameplay decisions rather than unresponsive controls. Unfair input can negatively affect player retention.
+
+**Soft Launch Key Performance Indicators (KPIs)**
+
+| Metric | Target |
+|---|---|
+| Day-1 Retention (D1) | 35%–40% or higher |
+| Day-7 Retention (D7) | 12%–15% or higher |
+| Average Runs per Daily Active User (DAU) | 4.5 or more runs/day |
+| Daily Objective Completion Rate | 60% or higher |
+
+**Kill / Pivot Signals**
+- **Low Day-1 Retention:** If D1 retention remains below 22% despite input improvements, reassess the core gameplay loop and early-game difficulty.
+- **Post-Failure Drop-Off:** If players frequently leave immediately after their first death, consider replacing the sudden-death system with a **3-strikes or health-bar system** to make failure more forgiving.
+
+These KPIs are initial targets for soft-launch testing, not measured results. Use playtest data to validate and refine them.
 
 ### 7. Reference Games & Deconstruction
-* **Fruit Ninja (Halfbrick):** Borrowed the sudden-death urgency of missed mandatory items; altered by replacing freeform screen slashing with positioning an umbrella/paddle catcher.
+* **thompsons and touch games(Dad's Catch):** Borrowed the falling and catching mechanism to feel entertains
 * **Alto's Adventure:** Borrowed the non-punitive, cumulative goal system that rewards aggregate effort across multiple runs.
 * **Overcooked:** Borrowed the relatable, high-stress domestic theme of frantic food handling over abstract geometric shapes.
 
