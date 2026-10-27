@@ -89,9 +89,21 @@ flowchart TD
 3. **Midnight UTC Auto-Reset:** Progress persists locally across sessions throughout the calendar day using `DateTime.UtcNow` date-stamped `PlayerPrefs`. When the player returns tomorrow, fresh objectives generate automatically, providing a concrete reason to return daily.
 
 ### Long-Term Retention (Months)
-* **Aisle Theming:** Unlocking new supermarket aisles (Produce $\rightarrow$ Bakery $\rightarrow$ Frozen Foods $\rightarrow$ Delicatessen) with distinctive physics (e.g., fragile eggs with smaller hitboxes, bouncing frozen turkeys, slippery soap hazards).
-* **Cosmetic Trolleys:** Earning coupon currency to unlock visual shopping carts (Golden Trolley, Turbo Kart, Wire Basket) and checkout sound effects.
-* **Weekly Supermarket Sweep:** Asynchronous weekly brackets (50 players) where daily objective completion awards tickets into weekend high-score tournaments.
+The following features are planned to expand Cart Rush beyond its current prototype and encourage long-term player engagement.
+
+- **New Locations & Aisle Theming:** Introduce unlockable supermarket aisles, including Produce, Bakery, Frozen Foods, and Delicatessen. Each location will feature unique grocery items, hazards, and gameplay mechanics.
+
+- **Cart Collection & Customization:** Allow players to earn coupon currency and unlock cosmetic shopping carts, such as the Golden Trolley, Turbo Kart, and Wire Basket. Alternative checkout sound effects may also be introduced.
+
+- **Card Passes & Special Upgrades:** Introduce Card Passes that provide access to special upgrades and optional ways to continue a run after failure.
+
+- **Timed Challenges:** Add limited-time challenges that encourage players to improve their scores and replay the game.
+
+- **Weekly Supermarket Sweep:** Explore asynchronous weekly tournaments with brackets of up to 50 players. Daily objective completion will award tickets for weekend high-score competitions.
+
+- **Weekly Objective Streaks:** Introduce weekly goals and streak-based rewards to encourage consistent play.
+
+These features are part of the future development roadmap and are not available in the current prototype.
 
 ---
 
@@ -166,9 +178,14 @@ The core gameplay remains accessible without requiring payment. Optional adverti
 These KPIs are initial targets for soft-launch testing, not measured results. Use playtest data to validate and refine them.
 
 ### 7. Reference Games & Deconstruction
-* **thompsons and touch games(Dad's Catch):** Borrowed the falling and catching mechanism to feel entertains
-* **Alto's Adventure:** Borrowed the non-punitive, cumulative goal system that rewards aggregate effort across multiple runs.
-* **Overcooked:** Borrowed the relatable, high-stress domestic theme of frantic food handling over abstract geometric shapes.
+
+- **Dad's Catch (Thompsons and Touch Games):** Borrowed the falling-and-catching gameplay mechanic, creating a simple, engaging experience that encourages players to react quickly and keep playing.
+
+- **Banana Kong:** Inspired the idea of rewarding continued effort across multiple runs through cumulative progress and objectives, encouraging players to return and improve their overall progress.
+
+- **Hill Climb Racing:** Inspired the progression concept of unlocking upgrades and new levels, giving players long-term goals to work toward as they earn in-game rewards.
+
+These games serve as design references for Cart Rush's core gameplay, replayability, and progression ideas.
 
 ---
 
