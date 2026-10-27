@@ -16,9 +16,12 @@
 ---
 
 ## 📌 Executive Pitch
-* **What is it?** *Cart Rush* is an intuitive, fast-reflex 2D arcade physics game where players drag a supermarket shopping cart horizontally to catch falling groceries and bonus coupons while avoiding letting any grocery item touch the floor.
-* **Who is it for?** Casual and hyper-casual mobile/browser gamers (ages 16–35) looking for quick, punchy 60-to-90-second play sessions during commutes, study breaks, or daily downtime.
-* **Why play it?** The immediate 1:1 tactile drag responsiveness, high-stakes sudden-death catching tension, risk-vs-reward bonus coupons, and a clear daily objective progression loop.
+
+- **What is it?** *Cart Rush* is a fast-paced 2D arcade physics game where players drag a supermarket shopping cart horizontally to catch falling groceries and bonus coupons while avoiding letting grocery items hit the floor.
+
+- **Who is it for?** Casual and hyper-casual gamers looking for quick, engaging 60–90-second play sessions during breaks, commutes, or downtime, with gameplay designed for browser audiences.
+
+- **Why play it?** Responsive drag controls, the tension of sudden-death grocery catching, risk-versus-reward coupon collection, and cumulative daily objectives create an easy-to-learn but challenging gameplay experience.
 
 ---
 
@@ -103,6 +106,8 @@ The following features are planned to expand Cart Rush beyond its current protot
 
 - **Weekly Objective Streaks:** Introduce weekly goals and streak-based rewards to encourage consistent play.
 
+- **Mobile Implementation :** Plan to expand Cart Rush to mobile devices in the future, with touchscreen drag controls and an interface optimized for smaller screens.
+
 These features are part of the future development roadmap and are not available in the current prototype.
 
 ---
@@ -179,7 +184,7 @@ These KPIs are initial targets for soft-launch testing, not measured results. Us
 
 ### 7. Reference Games & Deconstruction
 
-- **Dad's Catch (Thompsons and Touch Games):** Borrowed the falling-and-catching gameplay mechanic, creating a simple, engaging experience that encourages players to react quickly and keep playing.
+- **Thomsons & Touch Java Game (Dad, Catch!):** Borrowed by its falling-and-catching gameplay mechanic to build the core gameplay of Cart Rush, creating a simple, engaging experience that encourages players to react quickly and keep playing.
 
 - **Banana Kong:** Inspired the idea of rewarding continued effort across multiple runs through cumulative progress and objectives, encouraging players to return and improve their overall progress.
 
