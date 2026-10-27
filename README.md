@@ -9,7 +9,7 @@
 ---
 
 ## 🎮 Playable Demo & Repository Links
-* **🕹️ WebGL Playable Demo (One Click, Browser):** [Cart Rush](https://sriram-game-dev.itch.io/cart-rush)
+* **🕹️ WebGL Playable Demo (One Click, Browser):** [Cart Rush itch.io](https://sriram-game-dev.itch.io/cart-rush)
 * **💻 GitHub Repository:** [Cart Rush Repo](https://github.com/sriram-game-dev/Cart-Rush)
 * **📹 Gameplay Video Reference:** Included in project submissions [Gameplay Demo](https://youtu.be/2TVzOWqtTL4?si=BdvvS7phzubA9q84).
 
