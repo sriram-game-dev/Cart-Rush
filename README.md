@@ -3,12 +3,16 @@
 > **A fast-paced 2D arcade physics catcher prototype built with Unity 6 (WebGL).**  
 > Built for the **Core Loop + Day-1 (D1) Prototype Challenge**.
 
+<div align="center">
+  <img src="docs/images/01_title_screen.png" alt="Cart Rush Title Screen" width="720" />
+</div>
+
 ---
 
 ## 🎮 Playable Demo & Repository Links
 * **🕹️ WebGL Playable Demo (One Click, Browser):** `[INSERT_YOUR_WEB_LINK_HERE - e.g. itch.io / GitHub Pages / Netlify]`
 * **💻 GitHub Repository:** `[INSERT_YOUR_GITHUB_REPO_URL_HERE]`
-* **📹 Gameplay Video:** Reference file included in submission (`Video_Project_2_(1).mp4`).
+* **📹 Gameplay Video Reference:** Included in project submissions (`Video_Project_2_(1).mp4`).
 
 ---
 
@@ -20,6 +24,11 @@
 ---
 
 ## 🔄 Core Gameplay Loop
+
+<div align="center">
+  <img src="docs/images/04_gameplay_action.png" alt="Gameplay Catching Action" width="720" />
+  <p><i>Live Gameplay: Catching bread and bonus coupons under dynamic gravity scaling.</i></p>
+</div>
 
 ```mermaid
 flowchart TD
@@ -41,7 +50,7 @@ flowchart TD
 ```
 
 ### 1. Risk vs. Reward Decision Making
-* **Groceries (Apples, Bread, Milk):** Mandatory catches. Letting any grocery touch the ground immediately triggers Game Over.
+* **Groceries (Apples, Bread, Milk):** Mandatory catches. Letting any grocery item touch the ground immediately triggers Game Over.
 * **Coupons (Savings):** High-value bonus items that reward extra score and progress towards the secondary daily objective. Missing a coupon does *not* end the run, forcing split-second micro-decisions: *"Do I dive across the screen for the coupon or play safe to secure the falling grocery?"*
 
 ### 2. Dynamic Escalation
@@ -49,7 +58,29 @@ flowchart TD
 
 ---
 
+## 🎓 Onboarding & First-Time User Experience (FTUE)
+
+<p align="center">
+  <img src="docs/images/02_how_to_play.png" alt="How to Play Rules Dialog" width="48%" />
+  <img src="docs/images/03_interactive_tutorial.png" alt="Interactive Tutorial Prompt" width="48%" />
+</p>
+<p align="center"><i>Left: "How to Play" rule overview. Right: 2-step interactive tutorial on first launch.</i></p>
+
+1. **Rule Overview Dialog:** Displays clear, icon-driven rules before the first run (Click & drag to steer, catch groceries to score, collect coupons for bonus savings).
+2. **Interactive 2-Step Hands-On:**
+   * **Step 1:** *"Click the kart"* teaches the player direct interaction.
+   * **Step 2:** *"Now, Drag left or right to collect the items"* validates movement before items start dropping.
+3. **Smart Persistence:** Returning players skip the tutorial automatically and jump straight into gameplay.
+
+---
+
 ## 📅 Day-1 (D1) Retention Hook & Metagame
+
+<p align="center">
+  <img src="docs/images/05_game_over_stats.png" alt="Game Over Stats & Daily Objectives" width="48%" />
+  <img src="docs/images/06_replay_loop.png" alt="Cumulative Daily Progress on Replay" width="48%" />
+</p>
+<p align="center"><i>Left: Game Over screen showing Overall Score & live Daily Objective progress. Right: Cumulative progress carries across runs (e.g., 3/20 → 6/20).</i></p>
 
 ### The Built-in D1 Mechanism: Persistent Daily Objectives
 1. **Cumulative Progress Across Sessions:**
@@ -157,4 +188,3 @@ The codebase follows a modular singleton manager architecture designed for high 
 5. **Publishing options:**
    * **itch.io (Recommended):** Compress the build folder contents (`index.html`, `Build/`, `TemplateData/`) into a `.zip` archive, upload to itch.io, and mark as **"This file will be played in the browser"**.
    * **GitHub Pages:** Commit the build folder to a `gh-pages` branch or configure GitHub Pages from `/docs`.
-
